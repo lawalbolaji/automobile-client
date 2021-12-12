@@ -1,11 +1,13 @@
-function App() {
+import React from 'react';
+import VehicleQuery from './components/VehicleQuery';
+
+export default function App() {
   return (
-    <div className="App">
-     <p>
-       Hello World!
-     </p>
-    </div>
+    <>
+      <p>
+        Find your Vehicle so that we can personalize your experience.
+      </p>
+      <VehicleQuery />
+    </>
   );
 }
-
-export default App;
