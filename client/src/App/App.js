@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import VehicleQuery from './components/VehicleQuery';
-import vehiclesApi from './utils/vehiclesAPI'
-import Vehicles from './components/Vehicles';
-import Slider from './components/Slider'
+import VehicleQuery from '../components/vehicleQuery/VehicleQuery';
+import vehiclesApi from '../utils/vehiclesAPI'
+import Vehicles from '../components/vehicles/Vehicles';
+import Slider from '../components/slider/Slider'
 
 export default function App() {
 

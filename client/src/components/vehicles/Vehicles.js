@@ -1,4 +1,4 @@
-import Vehicle from "./Vehicle";
+import Vehicle from "../vehicle/Vehicle";
 
 export default function Vehicles(props) {
   let count = props.count <= props.vehicles.length ? props.count : props.vehicles.length - props.increment;
