@@ -3,6 +3,7 @@ import VehicleQuery from '../components/vehicleQuery/VehicleQuery';
 import vehiclesApi from '../utils/vehiclesAPI'
 import Vehicles from '../components/vehicles/Vehicles';
 import Slider from '../components/slider/Slider'
+import './App.css'
 
 export default function App() {
 
@@ -29,7 +30,7 @@ export default function App() {
   const [vehicles, setVehicles] = useState([]);
   const [slider, setSlider] = useState(0);
 
-  const sliderIncrement = 10;
+  const sliderIncrement = 9;
 
   // invoke effect only once
   useEffect(() => {
@@ -38,15 +39,22 @@ export default function App() {
     })
   }, []);
 
+  let sliderBar = vehicles.length ? <Slider increaseCount={increaseSlider} count={slider}/> : null
+
   return (
-    <>
-      <p>
+    <div className="top-level">
+      <nav>
+        <span id="icon">X</span> Automobile Client
+      </nav>
+      <header>
         Find your Vehicle so that we can personalize your experience.
-      </p>
+      </header>
+      <main>
+      </main>
       <VehicleQuery makes={makes} makeChangeHandler={handleMakeChange}
                     models={models} modelChangeHandler={handleModelChange}/>
       <Vehicles vehicles={vehicles} count={slider} increment={sliderIncrement}/>
-      <Slider increaseCount={increaseSlider} count={slider}/>
-    </>
+      {sliderBar}
+    </div>
   );
 }

@@ -1,7 +1,10 @@
+import React from 'react';
+import './vehicle.css'
+
 export default function Vehicles(props) {
     return (
       <>
-        <p>
+        <p className="vehicle">
           Make: {props.vehicle.make} <br />
           Model: {props.vehicle.model} <br />
           Engine Capacity: {props.vehicle.engineCapacity} <br />

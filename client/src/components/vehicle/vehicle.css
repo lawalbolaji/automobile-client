@@ -1,0 +1,8 @@
+p.vehicle{
+    padding: 0.5em;
+}
+
+p.vehicle:hover{
+    border: 0.5px solid burlywood;
+    border-radius: 10px;
+}
