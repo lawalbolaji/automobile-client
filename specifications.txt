@@ -1,3 +1,4 @@
 todo: add pagination to the cars gallery for better UX
 todo: Add styling
 tood: Add unit tests
+todo: do error handling for 503
