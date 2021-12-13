@@ -73,7 +73,13 @@ export default function App() {
                           : null
 
   // do not render slider if vehicles have not been loaded yet
-  const sliderBar = models.length && vehicles.length ? <Slider increaseCount={increaseSlider} decreaseCount={decreaseSlider} cursor={slider} /> : null;
+  const sliderBar = models.length && vehicles.length 
+                    ? <Slider 
+                          increaseCount={increaseSlider} 
+                          decreaseCount={decreaseSlider} 
+                          cursor={slider} 
+                          cursorStop={vehicles.length}/>
+                    : null;
 
   return (
     <div id="topApp">

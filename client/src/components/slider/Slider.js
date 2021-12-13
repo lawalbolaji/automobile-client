@@ -14,8 +14,8 @@ export default function Slider(props) {
     return (
       <>
         <div className="slider">
-            <button onClick={handlePreviousClick} className="previous">{"<"} Previous Page</button>
-            <button onClick={handleNextClick} className="next">Next page {">"}</button>
+            <button disabled={props.cursor === 0} onClick={handlePreviousClick} className="previous">{"<"} Previous Page</button>
+            <button disabled={props.cursor > props.cursorStop - 10} onClick={handleNextClick} className="next">Next page {">"}</button>
         </div>
       </>
     );
