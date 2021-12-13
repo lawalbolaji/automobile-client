@@ -9,8 +9,12 @@ export default async function vehiclesAPI(url = '') {
       },
       redirect: 'follow', 
       referrerPolicy: 'no-referrer', 
-    }).then(data => data.json())
-    .catch(err => [])
-    
+    }).then(async data => {
+      return {result: await data.json(), error: ''}
+    })
+    .catch(err => { 
+      return {result: [], error: err}
+    })
+
     return response;
 }

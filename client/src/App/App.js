@@ -22,9 +22,15 @@ export default function App() {
 
     const chosenMake = makes[event.target.options.selectedIndex - 1];
     const models = await vehiclesApi(`${urls.models}?make=${chosenMake}`);
+
+    // check for 503 error from server
+    if(models.error){
+      setErrorMessage("Opps! Something went wrong. Please try again...");
+      return;
+    }
     setMake(chosenMake);
-    setModels(models);
-    if(!models.length){
+    setModels(models.result);
+    if(!models.result.length){
       setErrorMessage(`There is no available model for ${chosenMake}`)
     }
   }
@@ -36,8 +42,14 @@ export default function App() {
 
     const chosenModel = models[event.target.options.selectedIndex - 1];
     const vehicles = await vehiclesApi(`${urls.vehicles}?make=${make}&model=${chosenModel}`);
-    setVehicles(vehicles);
-    if(!vehicles.length){
+
+    if(vehicles.error){
+      setErrorMessage("Opps! Something went wrong. Please try again...");
+      return;
+    }
+
+    setVehicles(vehicles.result);
+    if(!vehicles.result.length){
       setErrorMessage(`There is no available vehicle for ${make} ${chosenModel}`)
     }
   }
@@ -66,7 +78,10 @@ export default function App() {
   // invoke effect only once
   useEffect(() => {
     vehiclesApi(urls.makes).then((data) => {
-      setMakes(data);
+      if(data.error){
+        setErrorMessage('Opps! Something went wrong. Please try again...');
+      }
+      setMakes(data.result);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
