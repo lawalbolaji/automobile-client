@@ -3,13 +3,19 @@ import './slider.css'
 
 export default function Slider(props) {
 
-    function handleClick(event){
-      props.increaseCount(props.count);
+    function handleNextClick(event){
+      props.increaseCount(props.cursor);
     }
+
+    function handlePreviousClick(event){
+      props.decreaseCount(props.cursor);
+    }
+
     return (
       <>
         <div className="slider">
-            <button onClick={handleClick}>&nbsp;Next page {">"}</button>
+            <button onClick={handlePreviousClick} className="previous">&nbsp;{"<"}Previous Page&nbsp;</button>
+            <button onClick={handleNextClick} className="next">&nbsp;&nbsp;Next page {">"}&nbsp;</button>
         </div>
       </>
     );

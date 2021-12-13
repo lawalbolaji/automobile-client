@@ -15,6 +15,10 @@ div.slider{
   border-radius: 10px;
 }
 
+button{
+  margin-left: 2em;
+}
+
 .slider button:hover{
   border: .5px solid goldenrod;
 }

@@ -27,8 +27,18 @@ export default function App() {
     setVehicles(vehicles);
   }
 
-  function increaseSlider(count) {
-    setSlider(count + sliderIncrement);
+  function increaseSlider(cursor) {
+    let newCursor = cursor + sliderIncrement < vehicles.length
+                      ? cursor + sliderIncrement
+                      : vehicles.length - 1
+    setSlider(newCursor);
+  }
+
+  function decreaseSlider(cursor){
+    let newCursor = cursor - sliderIncrement > 0 
+                    ? cursor - sliderIncrement
+                    : 0
+    setSlider(newCursor);
   }
 
   const [makes, setMakes] = useState([]);
@@ -46,7 +56,7 @@ export default function App() {
   }, []);
 
   // do not render slider if vehicles have not been loaded yet
-  const sliderBar = vehicles.length ? <Slider increaseCount={increaseSlider} count={slider} /> : null;
+  const sliderBar = vehicles.length ? <Slider increaseCount={increaseSlider} decreaseCount={decreaseSlider} cursor={slider} /> : null;
 
   return (
     <div id="topApp">
@@ -65,7 +75,7 @@ export default function App() {
           models={models}
           modelChangeHandler={handleModelChange}
         />
-        <Vehicles vehicles={vehicles} count={slider} increment={sliderIncrement} />
+        <Vehicles vehicles={vehicles} cursor={slider} increment={sliderIncrement} />
         {sliderBar}
       </div>
     </div>
