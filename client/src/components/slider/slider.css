@@ -17,8 +17,12 @@ div.slider{
 
 button{
   margin-left: 2em;
+  width: 10em;
+  background-color: #e7e7e7;
+  font-weight: bold
 }
 
 .slider button:hover{
   border: .5px solid goldenrod;
+  background-color: white;
 }

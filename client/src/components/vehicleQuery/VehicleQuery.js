@@ -6,7 +6,7 @@ export default function VehicleQuery(props) {
       <label htmlFor="model-select" className="label">Select Model</label>
       <div className="select">
         <select onChange={props.modelChangeHandler} id="model-select">
-          {props.models.map((model, index) => {
+          {["---Select Model---",...props.models].map((model, index) => {
             return <option key={index} value={model}>{model}</option>
           })}
         </select>
@@ -19,7 +19,7 @@ export default function VehicleQuery(props) {
             <label htmlFor="make-select" className="label">Select Make</label>
             <div className="select">
               <select onChange={props.makeChangeHandler} id="make-select">
-                {props.makes.map((make, index) => {
+                {["---Select Make---",...props.makes].map((make, index) => {
                   return <option key={index} value={make}>{make}</option>
                 })}
               </select>

@@ -18,12 +18,12 @@ export default function App() {
     // reset state
     setVehicles([]);
 
-    const chosenMake = makes[event.target.options.selectedIndex];
+    const chosenMake = makes[event.target.options.selectedIndex - 1];
     const models = await vehiclesApi(`${urls.models}?make=${chosenMake}`);
     setMake(chosenMake);
     setModels(models);
     if(!models.length){
-      alert('There is no available model for this make')
+      alert(`There is no available model for ${chosenMake}`)
     }
   }
 
@@ -31,9 +31,12 @@ export default function App() {
     // reset state
     setVehicles([]);
 
-    const chosenModel = models[event.target.options.selectedIndex];
+    const chosenModel = models[event.target.options.selectedIndex - 1];
     const vehicles = await vehiclesApi(`${urls.vehicles}?make=${make}&model=${chosenModel}`);
     setVehicles(vehicles);
+    if(!vehicles.length){
+      alert(`There is no available vehicle for ${make} ${chosenModel}`)
+    }
   }
 
   function increaseSlider(cursor) {
