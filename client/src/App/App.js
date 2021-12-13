@@ -42,19 +42,21 @@ export default function App() {
   let sliderBar = vehicles.length ? <Slider increaseCount={increaseSlider} count={slider}/> : null
 
   return (
-    <div className="top-level">
-      <nav>
-        <span id="icon">X</span> Automobile Client
-      </nav>
-      <header>
-        Find your Vehicle so that we can personalize your experience.
-      </header>
-      <main>
-      </main>
-      <VehicleQuery makes={makes} makeChangeHandler={handleMakeChange}
-                    models={models} modelChangeHandler={handleModelChange}/>
-      <Vehicles vehicles={vehicles} count={slider} increment={sliderIncrement}/>
-      {sliderBar}
+    <div id="topApp">
+      <div className="app">
+        <nav>
+          <p>X</p>
+          <p>Automobile Client</p>
+        </nav>
+        <header>
+          <p>Hello Hello!</p>
+          <p className="typewriter">Please choose your vehicle below!</p>
+        </header>
+        <VehicleQuery makes={makes} makeChangeHandler={handleMakeChange}
+                      models={models} modelChangeHandler={handleModelChange}/>
+        <Vehicles vehicles={vehicles} count={slider} increment={sliderIncrement}/>
+        {sliderBar}
+      </div>
     </div>
   );
 }

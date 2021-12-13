@@ -1,6 +1,9 @@
-.vehicles {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: 2em 5%;
-  }
+.topVehicles{
+  margin-top: 2em;
+}
+
+.vehicles{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

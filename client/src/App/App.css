@@ -7,20 +7,36 @@
     font-family: 'Gugi', cursive;
 }
 
-div.top-level{
-    max-width: 800px;
+#topApp{
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
 }
 
-nav, header{
-    margin-top: 2em;
-    padding: .5em 1em;
+.app{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 600px;
+}
+
+nav{
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
     font-size: 150%;
+    line-height: 2em;
 }
 
 header{
-    margin-bottom: 2em;
+    text-align: center;
+    margin-bottom: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-size: 150%;
+    line-height: 2em;
+    text-overflow: clip;
 }
-

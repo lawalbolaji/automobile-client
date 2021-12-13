@@ -9,7 +9,7 @@ export default function Slider(props) {
     return (
       <>
         <div className="slider">
-            <button onClick={handleClick}>Next page</button>
+            <button onClick={handleClick}>&nbsp;Next page {">"}</button>
         </div>
       </>
     );

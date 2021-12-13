@@ -1,10 +1,20 @@
 div {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: center;
 }
 
 div.slider{
   margin-top: 2em;
   margin-bottom: 2em;
+}
+
+.slider button{
+  font-size: 1em;
+  line-height: 2em;
+  border: .5px solid black;
+  border-radius: 10px;
+}
+
+.slider button:hover{
+  border: .5px solid goldenrod;
 }

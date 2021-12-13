@@ -23,21 +23,22 @@ select::-ms-expand {
 }
 
 .select {
+    display: grid;
     position: relative;
     align-items: center;
-    display: grid;
     grid-template-areas: "select";
     width: 100%;
     min-width: 15ch;
-    max-width: 30ch;
     border: 1px solid var(--select-border);
     border-radius: 0.25em;
-    padding: 0.25em 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     font-size: 1rem;
     cursor: pointer;
     line-height: 1.1;
     background-color: #fff;
     background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+    margin-bottom: 0.5em;
 }
 
 select,
@@ -48,8 +49,8 @@ select,
 .select::after {
     justify-self: end;
     content: "";
-    width: 0.8em;
-    height: 0.5em;
+    width: 0.4em;
+    height: 0.3em;
     background-color: var(--select-arrow);
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
@@ -64,22 +65,27 @@ select:focus + .focus {
     border-radius: inherit;
 }
 
-form{
+div.queryForm {
     display: flex;
-    padding: 1em 2em;
-    margin-bottom: 2em;
-    border: 0.5px solid grey;
-    border-radius: 5px;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 div.container{
-    margin-right: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-label.label{
-    margin-bottom: .5em;
-    font-size: .7em;
-    align-self: flex-start;
+form{
+    max-width: 80%;
+    min-width: 60%;
+}
+
+label{
+    display: block;
+    margin-bottom: .2em;
+    margin-top: 2em;
+    font-size: 0.7em;
 }
