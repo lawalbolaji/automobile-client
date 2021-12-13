@@ -30,6 +30,8 @@ export default function App() {
     // check for 503 error from server
     if(models.error){
       setErrorMessage("Opps! Something went wrong. Please try again...");
+      // reset models since it may have been populated before the error
+      setModels([]);
       return;
     }
     setMake(chosenMake);
