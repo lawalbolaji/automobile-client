@@ -9,8 +9,6 @@ export default function Vehicles(props) {
   let stopCursor = cursor + props.increment < props.vehicles.length 
                     ? cursor + props.increment 
                     : props.vehicles.length;
-
-  console.log(`cursor: ${cursor}\nstop cursor: ${stopCursor}`)
   let vehicles = [...props.vehicles];
   let renderedVehicles = vehicles.length ? 
                   <div className="vehicles">
