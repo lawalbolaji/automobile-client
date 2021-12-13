@@ -21,6 +21,7 @@ export default function App() {
     setErrorMessage('');
 
     if(event.target.options.selectedIndex - 1 < 0){
+      setModels([]);
       return;
     }
 
