@@ -6,17 +6,24 @@ import Slider from '../components/slider/Slider'
 import './App.css'
 
 export default function App() {
+  // server endpoints
+  const urls = {
+    makes: "http://localhost:8080/api/makes",
+    models: "http://localhost:8080/api/models",
+    vehicles: "http://localhost:8080/api/vehicles"
+  }
+  const sliderIncrement = 9;
 
   async function handleMakeChange(event){
     let chosenMake = makes[event.target.options.selectedIndex];
-    let models = await vehiclesApi('http://localhost:8080/api/models?make='+chosenMake)
+    let models = await vehiclesApi(urls.models+'?model='+chosenMake)
     setMake(chosenMake);
     setModels(models);
   }
 
   async function handleModelChange(event){
     let chosenModel = models[event.target.options.selectedIndex];
-    let vehicles = await vehiclesApi('http://localhost:8080/api/vehicles?make='+make+'&model='+chosenModel);
+    let vehicles = await vehiclesApi(urls.vehicles+'?make='+make+'&model='+chosenModel);
     setVehicles(vehicles);
   }
 
@@ -30,15 +37,15 @@ export default function App() {
   const [vehicles, setVehicles] = useState([]);
   const [slider, setSlider] = useState(0);
 
-  const sliderIncrement = 9;
 
   // invoke effect only once
   useEffect(() => {
-    vehiclesApi('http://localhost:8080/api/makes').then(data => {
+    vehiclesApi(urls.makes).then(data => {
       setMakes(data);
     })
   }, []);
 
+  // do not render slider if vehicles have not been loaded yet
   let sliderBar = vehicles.length ? <Slider increaseCount={increaseSlider} count={slider}/> : null
 
   return (
@@ -50,7 +57,7 @@ export default function App() {
         </nav>
         <header>
           <p>Hello Hello!</p>
-          <p className="typewriter">Please choose your vehicle below!</p>
+          <p>Please choose your vehicle below!</p>
         </header>
         <VehicleQuery makes={makes} makeChangeHandler={handleMakeChange}
                       models={models} modelChangeHandler={handleModelChange}/>
