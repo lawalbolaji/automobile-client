@@ -14,11 +14,22 @@
 }
 
 .app{
+    max-width: 600px;
+    display: block
+}
+
+.introContent{
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 600px;
+}
+
+.resultContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 nav{

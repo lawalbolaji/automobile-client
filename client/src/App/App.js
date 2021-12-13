@@ -15,13 +15,22 @@ export default function App() {
   const sliderIncrement = 9;
 
   async function handleMakeChange(event) {
+    // reset state
+    setVehicles([]);
+
     const chosenMake = makes[event.target.options.selectedIndex];
     const models = await vehiclesApi(`${urls.models}?make=${chosenMake}`);
     setMake(chosenMake);
     setModels(models);
+    if(!models.length){
+      alert('There is no available model for this make')
+    }
   }
 
   async function handleModelChange(event) {
+    // reset state
+    setVehicles([]);
+
     const chosenModel = models[event.target.options.selectedIndex];
     const vehicles = await vehiclesApi(`${urls.vehicles}?make=${make}&model=${chosenModel}`);
     setVehicles(vehicles);
@@ -54,29 +63,40 @@ export default function App() {
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
+
+  let renderedVehicles = models.length && vehicles.length
+                          ? <Vehicles vehicles={vehicles} cursor={slider} increment={sliderIncrement} />
+                          : null
 
   // do not render slider if vehicles have not been loaded yet
-  const sliderBar = vehicles.length ? <Slider increaseCount={increaseSlider} decreaseCount={decreaseSlider} cursor={slider} /> : null;
+  const sliderBar = models.length && vehicles.length ? <Slider increaseCount={increaseSlider} decreaseCount={decreaseSlider} cursor={slider} /> : null;
 
   return (
     <div id="topApp">
       <div className="app">
-        <nav>
-          <p>X</p>
-          <p>Automobile Client</p>
-        </nav>
-        <header>
-          <p>Hello Hello!</p>
-          <p>Please choose your vehicle below!</p>
-        </header>
-        <VehicleQuery
-          makes={makes}
-          makeChangeHandler={handleMakeChange}
-          models={models}
-          modelChangeHandler={handleModelChange}
-        />
-        <Vehicles vehicles={vehicles} cursor={slider} increment={sliderIncrement} />
-        {sliderBar}
+        <div className="introWrapper">
+          <div className="introContent">
+            <nav>
+              <p>X</p>
+              <p>Automobile Client</p>
+            </nav>
+            <header>
+              <p>Hello Hello!</p>
+              <p>Please choose your vehicle below!</p>
+            </header>
+            <VehicleQuery
+              makes={makes}
+              makeChangeHandler={handleMakeChange}
+              models={models}
+              modelChangeHandler={handleModelChange}
+            />
+          </div>
+        </div>
+        <div className="resultContent">
+          {renderedVehicles}
+          {sliderBar}
+        </div>
       </div>
     </div>
   );
