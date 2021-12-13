@@ -16,7 +16,7 @@ export default function App() {
 
   async function handleMakeChange(event) {
     const chosenMake = makes[event.target.options.selectedIndex];
-    const models = await vehiclesApi(`${urls.models}?model=${chosenMake}`);
+    const models = await vehiclesApi(`${urls.models}?make=${chosenMake}`);
     setMake(chosenMake);
     setModels(models);
   }
@@ -42,6 +42,7 @@ export default function App() {
     vehiclesApi(urls.makes).then((data) => {
       setMakes(data);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // do not render slider if vehicles have not been loaded yet
