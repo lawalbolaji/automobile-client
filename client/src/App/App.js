@@ -18,6 +18,7 @@ export default function App() {
   async function handleMakeChange(event) {
     // reset state
     setVehicles([]);
+    setModels([]);
     setErrorMessage('');
 
     if(event.target.options.selectedIndex - 1 < 0){
