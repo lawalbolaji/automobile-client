@@ -20,6 +20,10 @@ export default function App() {
     setVehicles([]);
     setErrorMessage('');
 
+    if(event.target.options.selectedIndex - 1 < 0){
+      return;
+    }
+
     const chosenMake = makes[event.target.options.selectedIndex - 1];
     const models = await vehiclesApi(`${urls.models}?make=${chosenMake}`);
 
@@ -39,6 +43,10 @@ export default function App() {
     // reset state
     setVehicles([]);
     setErrorMessage('');
+
+    if(event.target.options.selectedIndex - 1 < 0){
+      return;
+    }
 
     const chosenModel = models[event.target.options.selectedIndex - 1];
     const vehicles = await vehiclesApi(`${urls.vehicles}?make=${make}&model=${chosenModel}`);
