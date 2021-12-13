@@ -3,6 +3,7 @@ import VehicleQuery from '../components/vehicleQuery/VehicleQuery';
 import vehiclesApi from '../utils/vehiclesAPI';
 import Vehicles from '../components/vehicles/Vehicles';
 import Slider from '../components/slider/Slider';
+import ErrorMessage from '../components/errorMessage/ErrorMessage'
 import './App.css';
 
 export default function App() {
@@ -17,25 +18,27 @@ export default function App() {
   async function handleMakeChange(event) {
     // reset state
     setVehicles([]);
+    setErrorMessage('');
 
     const chosenMake = makes[event.target.options.selectedIndex - 1];
     const models = await vehiclesApi(`${urls.models}?make=${chosenMake}`);
     setMake(chosenMake);
     setModels(models);
     if(!models.length){
-      alert(`There is no available model for ${chosenMake}`)
+      setErrorMessage(`There is no available model for ${chosenMake}`)
     }
   }
 
   async function handleModelChange(event) {
     // reset state
     setVehicles([]);
+    setErrorMessage('');
 
     const chosenModel = models[event.target.options.selectedIndex - 1];
     const vehicles = await vehiclesApi(`${urls.vehicles}?make=${make}&model=${chosenModel}`);
     setVehicles(vehicles);
     if(!vehicles.length){
-      alert(`There is no available vehicle for ${make} ${chosenModel}`)
+      setErrorMessage(`There is no available vehicle for ${make} ${chosenModel}`)
     }
   }
 
@@ -58,6 +61,7 @@ export default function App() {
   const [models, setModels] = useState([]);
   const [vehicles, setVehicles] = useState([]);
   const [slider, setSlider] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // invoke effect only once
   useEffect(() => {
@@ -81,6 +85,10 @@ export default function App() {
                           cursorStop={vehicles.length}/>
                     : null;
 
+  const errorRenderer = errorMessage 
+                        ? <ErrorMessage message={errorMessage}/> 
+                        : null
+
   return (
     <div id="topApp">
       <div className="app">
@@ -101,6 +109,9 @@ export default function App() {
               modelChangeHandler={handleModelChange}
             />
           </div>
+        </div>
+        <div className="errorMessage">
+          {errorRenderer}
         </div>
         <div className="resultContent">
           {renderedVehicles}
